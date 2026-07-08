@@ -1,0 +1,35 @@
+// C++ Solution
+// Topics : Two Pointers
+
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int n=s.size();
+        if(n<=1) return s;
+        string lps="";
+        for(int i=0;i<n;i++){
+            // odd length
+           int lo=i,hi=i;
+           while(lo>=0 && hi<n && s[lo]==s[hi]){
+            lo--;
+            hi++;
+            if(lo<0 || hi>=n) break;
+           }
+           string hlp=s.substr(lo+1,hi-lo-1);
+           if(hlp.size()>lps.size()) lps=hlp;
+
+           // even length
+
+            lo=i-1,hi=i;
+           while(lo>=0 && hi<n && s[lo]==s[hi]){
+            lo--;
+            hi++;
+            if(lo<0 || hi>=n) break;
+           }
+            hlp=s.substr(lo+1,hi-lo-1);
+           if(hlp.size()>lps.size()) lps=hlp;
+        }
+        return lps;
+    }
+};
